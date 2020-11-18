@@ -41,6 +41,7 @@ jspm_packages/
 /dist
 .jsii
 tsconfig.json
+cdk.out
 !/package.json
 !/.npmignore
 !/LICENSE
