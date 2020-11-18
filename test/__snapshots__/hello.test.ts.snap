@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JenkinsWindowsWorkerImageBuilder 1`] = `
+JenkinsWindowsWorkerImageBuilder {
+  "_logicalIds": LogicalIDs {
+    "renames": Object {},
+    "reverse": Object {},
+  },
+  "_missingContext": Array [],
+  "_stackDependencies": Object {},
+  "_stackName": "testDBA94737",
+  "_versionReportingEnabled": undefined,
+  "account": "\${Token[AWS.AccountId.0]}",
+  "artifactId": "testDBA94737",
+  "environment": "aws://unknown-account/unknown-region",
+  "node": ConstructNode {
+    "_actualNode": Node {
+      "_aspects": Array [],
+      "_children": Object {},
+      "_context": Object {},
+      "_dependencies": Set {},
+      "_locked": false,
+      "_metadata": Array [],
+      "_validations": Array [],
+      "host": [Circular],
+      "id": "test",
+      "invokedAspects": Array [],
+      "scope": Stack {
+        "_logicalIds": LogicalIDs {
+          "renames": Object {},
+          "reverse": Object {},
+        },
+        "_missingContext": Array [],
+        "_stackDependencies": Object {},
+        "_stackName": "test",
+        "_versionReportingEnabled": undefined,
+        "account": "\${Token[AWS.AccountId.0]}",
+        "artifactId": "test",
+        "environment": "aws://unknown-account/unknown-region",
+        "node": ConstructNode {
+          "_actualNode": Node {
+            "_aspects": Array [],
+            "_children": Object {
+              "test": [Circular],
+            },
+            "_context": Object {},
+            "_dependencies": Set {},
+            "_locked": false,
+            "_metadata": Array [],
+            "_validations": Array [],
+            "host": [Circular],
+            "id": "test",
+            "invokedAspects": Array [],
+            "scope": App {
+              "_assemblyBuilder": CloudAssemblyBuilder {
+                "artifacts": Object {},
+                "assetOutdir": "/private/var/folders/8b/d4tf3lws2p9fhyjvy1rrdwhh0000gn/T/cdk.outNRKE5m",
+                "missing": Array [],
+                "outdir": "/private/var/folders/8b/d4tf3lws2p9fhyjvy1rrdwhh0000gn/T/cdk.outNRKE5m",
+              },
+              "account": undefined,
+              "node": ConstructNode {
+                "_actualNode": Node {
+                  "_aspects": Array [],
+                  "_children": Object {
+                    "Tree": TreeMetadata {
+                      "node": ConstructNode {
+                        "_actualNode": Node {
+                          "_aspects": Array [],
+                          "_children": Object {},
+                          "_context": Object {},
+                          "_dependencies": Set {},
+                          "_locked": false,
+                          "_metadata": Array [],
+                          "_validations": Array [],
+                          "host": [Circular],
+                          "id": "Tree",
+                          "invokedAspects": Array [],
+                          "scope": [Circular],
+                        },
+                        "host": [Circular],
+                      },
+                      Symbol(@aws-cdk/core.DependableTrait): Object {
+                        "dependencyRoots": Array [
+                          [Circular],
+                        ],
+                      },
+                    },
+                    "test": [Circular],
+                  },
+                  "_context": Object {},
+                  "_dependencies": Set {},
+                  "_locked": false,
+                  "_metadata": Array [],
+                  "_validations": Array [],
+                  "host": [Circular],
+                  "id": "",
+                  "invokedAspects": Array [],
+                  "scope": undefined,
+                },
+                "host": [Circular],
+              },
+              "parentStage": undefined,
+              "region": undefined,
+              "stageName": "",
+              Symbol(@aws-cdk/core.DependableTrait): Object {
+                "dependencyRoots": Array [
+                  [Circular],
+                ],
+              },
+            },
+          },
+          "host": [Circular],
+        },
+        "region": "\${Token[AWS.Region.4]}",
+        "synthesizer": LegacyStackSynthesizer {
+          "addedImageAssets": Set {},
+          "cycle": false,
+          "stack": [Circular],
+        },
+        "tags": TagManager {
+          "initialTagPriority": 50,
+          "priorities": Map {},
+          "resourceTypeName": "aws:cdk:stack",
+          "tagFormatter": KeyValueFormatter {},
+          "tagPropertyName": "tags",
+          "tags": Map {},
+        },
+        "templateFile": "test.template.json",
+        "templateOptions": Object {},
+        "terminationProtection": undefined,
+        Symbol(@aws-cdk/core.DependableTrait): Object {
+          "dependencyRoots": Array [
+            [Circular],
+          ],
+        },
+      },
+    },
+    "host": [Circular],
+  },
+  "region": "\${Token[AWS.Region.4]}",
+  "synthesizer": LegacyStackSynthesizer {
+    "addedImageAssets": Set {},
+    "cycle": false,
+    "stack": [Circular],
+  },
+  "tags": TagManager {
+    "initialTagPriority": 50,
+    "priorities": Map {},
+    "resourceTypeName": "aws:cdk:stack",
+    "tagFormatter": KeyValueFormatter {},
+    "tagPropertyName": "tags",
+    "tags": Map {},
+  },
+  "templateFile": "testDBA94737.template.json",
+  "templateOptions": Object {},
+  "terminationProtection": undefined,
+  Symbol(@aws-cdk/core.DependableTrait): Object {
+    "dependencyRoots": Array [
+      [Circular],
+    ],
+  },
+}
+`;

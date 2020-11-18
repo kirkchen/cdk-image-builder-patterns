@@ -3,7 +3,7 @@ const { AwsCdkConstructLibrary } = require('projen');
 const project = new AwsCdkConstructLibrary({
   authorAddress: "rwk0119@yahoo.com.tw",
   authorName: "Kirk Chen",
-  cdkVersion: "1.73.0",
+  cdkVersion: "1.74.0",
   name: "cdk-jenkins-windows-worker-image-builder",
   repository: "https://github.com/rwk0119/cdk-jenkins-windows-worker-image-builder.git",
 
@@ -84,6 +84,12 @@ const project = new AwsCdkConstructLibrary({
   // workflowContainerImage: undefined,                                                   /* Container image to use for GitHub workflows. */
   // workflowNodeVersion: undefined,                                                      /* The node version to use in GitHub workflows. */
   gitignore: ['.idea'],
+  cdkDependencies: [
+    '@aws-cdk/core',
+    '@aws-cdk/aws-ec2',
+    '@aws-cdk/aws-iam',
+    '@aws-cdk/aws-imagebuilder'
+  ],
 });
 
 project.synth();
