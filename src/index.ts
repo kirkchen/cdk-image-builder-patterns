@@ -7,7 +7,7 @@ import {
   CfnImageRecipe,
   CfnInfrastructureConfiguration,
 } from '@aws-cdk/aws-imagebuilder';
-import { Construct } from '@aws-cdk/core';
+import { Construct, Stack } from '@aws-cdk/core';
 
 const defaultProps: JenkinsWindowsWorkerImageBuilderProps = {
   version: '1.0.0',
@@ -88,6 +88,7 @@ export class JenkinsWindowsWorkerImageBuilder extends Construct {
     super(scope, id);
 
     const { version, instanceTypes, baseImage } = props;
+    const stackName = Stack.of(this).stackName;
 
     const baseImageAmiId = baseImage ? baseImage.getImage(this).imageId : MachineImage.latestWindows(
       WindowsVersion.WINDOWS_SERVER_2016_ENGLISH_FULL_BASE,
@@ -95,20 +96,20 @@ export class JenkinsWindowsWorkerImageBuilder extends Construct {
 
 
     const setupWinRMComponent = new CfnComponent(this, 'SetupWinRM', {
-      name: 'Setup WinRM',
+      name: `${stackName}-setup-winrm`,
       platform: 'Windows',
       version,
       data: setupWinRMData,
     });
     const enableSmb1 = new CfnComponent(this, 'EnableSmb1', {
-      name: 'Enable smb1',
+      name: `${stackName}-enable-smb1`,
       platform: 'Windows',
       version,
       data: enableSmb1Data,
     });
 
     const installBuildTools = new CfnComponent(this, 'InstallBuildTools', {
-      name: 'Install Build Tools',
+      name: `${stackName}-install-build-tools`,
       platform: 'Windows',
       version,
       data: installBuildToolsData,
@@ -116,9 +117,9 @@ export class JenkinsWindowsWorkerImageBuilder extends Construct {
 
     const jenkinsWindowsWorkerRecipe = new CfnImageRecipe(
       this,
-      'JenkinsWindowsWorkerRecipe',
+      `${stackName}-jenkins-windows-worker-recipe`,
       {
-        name: 'JenkinsWindowsWorkerRecipe',
+        name: `${stackName}-jenkins-windows-worker-recipe`,
         version,
         components: [
           {
@@ -135,8 +136,8 @@ export class JenkinsWindowsWorkerImageBuilder extends Construct {
       },
     );
 
-    const windowsBuilderRole = new Role(this, 'WindowsBuilderRole', {
-      roleName: 'WindowsBuilderRole',
+    const windowsBuilderRole = new Role(this, `${stackName}-windows-builder-role`, {
+      roleName: `${stackName}-windows-builder-role`,
       assumedBy: new ServicePrincipal('ec2.amazonaws.com'),
     });
     windowsBuilderRole.addManagedPolicy(
@@ -150,26 +151,26 @@ export class JenkinsWindowsWorkerImageBuilder extends Construct {
 
     const windowsBuilderInstanceProfile = new CfnInstanceProfile(
       this,
-      'WindowsBuilderInstanceProfile',
+      `${stackName}-windows-builder-instance-profile`,
       {
-        instanceProfileName: 'WindowsBuilderInstanceProfile',
+        instanceProfileName: `${stackName}-windows-builder-instance-profile`,
         roles: [windowsBuilderRole.roleName],
       },
     );
 
     const windowsImageBuilderInfraConfig = new CfnInfrastructureConfiguration(
       this,
-      'WindowsImageBuilderConfig',
+      `${stackName}-windows-image-builder-config`,
       {
-        name: 'WindowsImageBuilderConfig',
+        name: `${stackName}-windows-image-builder-config`,
         instanceTypes,
         instanceProfileName: windowsBuilderInstanceProfile.instanceProfileName!,
       },
     );
     windowsImageBuilderInfraConfig.addDependsOn(windowsBuilderInstanceProfile);
 
-    new CfnImagePipeline(this, 'JenkinsWindowsWorkerPipeline', {
-      name: 'JenkinsWindowsWorkerPipeline',
+    new CfnImagePipeline(this, `${stackName}-jenkins-windows-worker-pipeline`, {
+      name: `${stackName}-jenkins-windows-worker-pipeline`,
       imageRecipeArn: jenkinsWindowsWorkerRecipe.attrArn,
       infrastructureConfigurationArn: windowsImageBuilderInfraConfig.attrArn,
     });
