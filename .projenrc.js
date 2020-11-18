@@ -4,8 +4,8 @@ const project = new AwsCdkConstructLibrary({
   authorAddress: "rwk0119@yahoo.com.tw",
   authorName: "Kirk Chen",
   cdkVersion: "1.74.0",
-  name: "cdk-jenkins-windows-worker-image-builder",
-  repository: "https://github.com/rwk0119/cdk-jenkins-windows-worker-image-builder.git",
+  name: "cdk-image-builder-patterns",
+  repository: "https://github.com/kirkchen/cdk-image-builder-patterns.git",
 
   /* AwsCdkConstructLibraryOptions */
   // cdkAssert: true,                                                                     /* Install the @aws-cdk/assert library? */

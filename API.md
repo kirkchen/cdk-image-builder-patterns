@@ -4,18 +4,18 @@
 
 Name|Description
 ----|-----------
-[JenkinsWindowsWorkerImageBuilder](#cdk-jenkins-windows-worker-image-builder-jenkinswindowsworkerimagebuilder)|*No description*
+[JenkinsWindowsWorkerImageBuilder](#cdk-image-builder-patterns-jenkinswindowsworkerimagebuilder)|*No description*
 
 
 **Structs**
 
 Name|Description
 ----|-----------
-[JenkinsWindowsWorkerImageBuilderProps](#cdk-jenkins-windows-worker-image-builder-jenkinswindowsworkerimagebuilderprops)|*No description*
+[JenkinsWindowsWorkerImageBuilderProps](#cdk-image-builder-patterns-jenkinswindowsworkerimagebuilderprops)|*No description*
 
 
 
-## class JenkinsWindowsWorkerImageBuilder  <a id="cdk-jenkins-windows-worker-image-builder-jenkinswindowsworkerimagebuilder"></a>
+## class JenkinsWindowsWorkerImageBuilder  <a id="cdk-image-builder-patterns-jenkinswindowsworkerimagebuilder"></a>
 
 
 
@@ -33,7 +33,7 @@ new JenkinsWindowsWorkerImageBuilder(scope: Construct, id: string, props?: Jenki
 
 * **scope** (<code>[Construct](#aws-cdk-core-construct)</code>)  *No description*
 * **id** (<code>string</code>)  *No description*
-* **props** (<code>[JenkinsWindowsWorkerImageBuilderProps](#cdk-jenkins-windows-worker-image-builder-jenkinswindowsworkerimagebuilderprops)</code>)  *No description*
+* **props** (<code>[JenkinsWindowsWorkerImageBuilderProps](#cdk-image-builder-patterns-jenkinswindowsworkerimagebuilderprops)</code>)  *No description*
   * **instanceTypes** (<code>Array<string></code>)  *No description* 
   * **version** (<code>string</code>)  *No description* 
   * **baseImage** (<code>[IMachineImage](#aws-cdk-aws-ec2-imachineimage)</code>)  *No description* __*Optional*__
@@ -41,7 +41,7 @@ new JenkinsWindowsWorkerImageBuilder(scope: Construct, id: string, props?: Jenki
 
 
 
-## struct JenkinsWindowsWorkerImageBuilderProps  <a id="cdk-jenkins-windows-worker-image-builder-jenkinswindowsworkerimagebuilderprops"></a>
+## struct JenkinsWindowsWorkerImageBuilderProps  <a id="cdk-image-builder-patterns-jenkinswindowsworkerimagebuilderprops"></a>
 
 
 
