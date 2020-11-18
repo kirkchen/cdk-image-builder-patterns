@@ -83,6 +83,7 @@ const project = new AwsCdkConstructLibrary({
   // workflowBootstrapSteps: "yarn install --frozen-lockfile && yarn projen",             /* Workflow steps to use in order to bootstrap this repo. */
   // workflowContainerImage: undefined,                                                   /* Container image to use for GitHub workflows. */
   // workflowNodeVersion: undefined,                                                      /* The node version to use in GitHub workflows. */
+  defaultReleaseBranch: "main",
   gitignore: ['.idea'],
   cdkDependencies: [
     '@aws-cdk/core',
