@@ -170,7 +170,12 @@
   "stability": "stable",
   "jsii": {
     "outdir": "dist",
-    "targets": {},
+    "targets": {
+      "dotnet": {
+        "namespace": "Cdk.ImageBuildersPatterns",
+        "packageId": "Cdk.ImageBuilderPatterns"
+      }
+    },
     "tsc": {
       "outDir": "lib",
       "rootDir": "src"

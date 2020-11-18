@@ -90,6 +90,10 @@ const project = new AwsCdkConstructLibrary({
     '@aws-cdk/aws-iam',
     '@aws-cdk/aws-imagebuilder'
   ],
+  dotnet: {
+    dotNetNamespace: "Cdk.ImageBuildersPatterns",
+    packageId: "Cdk.ImageBuilderPatterns",
+  }
 });
 
 const common_exclude = ['cdk.out'];
