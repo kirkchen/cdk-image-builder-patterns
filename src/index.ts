@@ -8,6 +8,7 @@ import {
   CfnInfrastructureConfiguration,
 } from '@aws-cdk/aws-imagebuilder';
 import { Construct, Stack } from '@aws-cdk/core';
+import ComponentConfigurationProperty = CfnImageRecipe.ComponentConfigurationProperty;
 
 const defaultProps: JenkinsWindowsWorkerImageBuilderProps = {
   version: '1.0.0',
@@ -84,6 +85,8 @@ phases:
 `;
 
 export class JenkinsWindowsWorkerImageBuilder extends Construct {
+  private recipe: CfnImageRecipe;
+
   constructor(scope: Construct, id: string, props: JenkinsWindowsWorkerImageBuilderProps = defaultProps) {
     super(scope, id);
 
@@ -101,6 +104,7 @@ export class JenkinsWindowsWorkerImageBuilder extends Construct {
       version,
       data: setupWinRMData,
     });
+
     const enableSmb1 = new CfnComponent(this, 'EnableSmb1', {
       name: `${stackName}-enable-smb1`,
       platform: 'Windows',
@@ -135,6 +139,7 @@ export class JenkinsWindowsWorkerImageBuilder extends Construct {
         parentImage: baseImageAmiId,
       },
     );
+    this.recipe = jenkinsWindowsWorkerRecipe;
 
     const windowsBuilderRole = new Role(this, `${stackName}-windows-builder-role`, {
       roleName: `${stackName}-windows-builder-role`,
@@ -174,5 +179,9 @@ export class JenkinsWindowsWorkerImageBuilder extends Construct {
       imageRecipeArn: jenkinsWindowsWorkerRecipe.attrArn,
       infrastructureConfigurationArn: windowsImageBuilderInfraConfig.attrArn,
     });
+  }
+
+  public addComponents(components: CfnComponent[]): void {
+    components.map(i => (this.recipe.components as ComponentConfigurationProperty[]).push({ componentArn: i.attrArn }));
   }
 }

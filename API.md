@@ -39,6 +39,22 @@ new JenkinsWindowsWorkerImageBuilder(scope: Construct, id: string, props?: Jenki
   * **baseImage** (<code>[IMachineImage](#aws-cdk-aws-ec2-imachineimage)</code>)  *No description* __*Optional*__
 
 
+### Methods
+
+
+#### addComponents(components) <a id="cdk-image-builder-patterns-jenkinswindowsworkerimagebuilder-addcomponents"></a>
+
+
+
+```ts
+addComponents(components: Array<CfnComponent>): void
+```
+
+* **components** (<code>Array<[CfnComponent](#aws-cdk-aws-imagebuilder-cfncomponent)></code>)  *No description*
+
+
+
+
 
 
 ## struct JenkinsWindowsWorkerImageBuilderProps  <a id="cdk-image-builder-patterns-jenkinswindowsworkerimagebuilderprops"></a>
