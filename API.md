@@ -37,6 +37,7 @@ new JenkinsWindowsWorkerImageBuilder(scope: Construct, id: string, props?: Jenki
   * **instanceTypes** (<code>Array<string></code>)  *No description* 
   * **version** (<code>string</code>)  *No description* 
   * **baseImage** (<code>[IMachineImage](#aws-cdk-aws-ec2-imachineimage)</code>)  *No description* __*Optional*__
+  * **imageBuilderRoleArn** (<code>string</code>)  *No description* __*Optional*__
 
 
 ### Methods
@@ -69,6 +70,7 @@ Name | Type | Description
 **instanceTypes** | <code>Array<string></code> | <span></span>
 **version** | <code>string</code> | <span></span>
 **baseImage**? | <code>[IMachineImage](#aws-cdk-aws-ec2-imachineimage)</code> | __*Optional*__
+**imageBuilderRoleArn**? | <code>string</code> | __*Optional*__
 
 
 
