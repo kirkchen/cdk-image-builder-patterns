@@ -147,7 +147,6 @@ export class JenkinsWindowsWorkerImageBuilder extends Construct {
       this,
       `${stackName}-windows-builder-instance-profile`,
       {
-        instanceProfileName: `${stackName}-windows-builder-instance-profile`,
         roles: [windowsBuilderRole.roleName],
       },
     );
