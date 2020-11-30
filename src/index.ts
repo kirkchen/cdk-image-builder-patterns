@@ -19,7 +19,7 @@ export interface JenkinsWindowsWorkerImageBuilderProps {
   readonly version: string;
   readonly instanceTypes: string[];
   readonly baseImage?: IMachineImage;
-  readonly imageBuilderRoleArn?: string;
+  readonly instanceProfileName?: string;
 }
 
 const enableSmb1Data = `
@@ -142,14 +142,11 @@ export class JenkinsWindowsWorkerImageBuilder extends Construct {
     );
     this.recipe = jenkinsWindowsWorkerRecipe;
 
-    const windowsBuilderRole = props.imageBuilderRoleArn ? Role.fromRoleArn(this, `${stackName}-windows-builder-role`, props.imageBuilderRoleArn) : this.createBuilderRole();
-    const windowsBuilderInstanceProfile = new CfnInstanceProfile(
-      this,
-      `${stackName}-windows-builder-instance-profile`,
-      {
-        roles: [windowsBuilderRole.roleName],
-      },
-    );
+    let windowsImageBuilderInstanceProfile: CfnInstanceProfile | null = null;
+    if (!props.instanceProfileName) {
+      windowsImageBuilderInstanceProfile = this.createInstanceProfile();
+    }
+    const windowsBuilderInstanceProfileName = props.instanceProfileName ?? windowsImageBuilderInstanceProfile?.instanceProfileName;
 
     const windowsImageBuilderInfraConfig = new CfnInfrastructureConfiguration(
       this,
@@ -157,10 +154,12 @@ export class JenkinsWindowsWorkerImageBuilder extends Construct {
       {
         name: `${stackName}-windows-image-builder-config`,
         instanceTypes,
-        instanceProfileName: windowsBuilderInstanceProfile.instanceProfileName!,
+        instanceProfileName: windowsBuilderInstanceProfileName!,
       },
     );
-    windowsImageBuilderInfraConfig.addDependsOn(windowsBuilderInstanceProfile);
+    if (!props.instanceProfileName) {
+      windowsImageBuilderInfraConfig.addDependsOn(windowsImageBuilderInstanceProfile!);
+    }
 
     new CfnImagePipeline(this, `${stackName}-jenkins-windows-worker-pipeline`, {
       name: `${stackName}-jenkins-windows-worker-pipeline`,
@@ -169,7 +168,7 @@ export class JenkinsWindowsWorkerImageBuilder extends Construct {
     });
   }
 
-  private createBuilderRole() {
+  private createInstanceProfile() {
     const stackName = Stack.of(this).stackName;
     const windowsBuilderRole = new Role(this, `${stackName}-windows-builder-role`, {
       roleName: `${stackName}-windows-builder-role`,
@@ -183,7 +182,15 @@ export class JenkinsWindowsWorkerImageBuilder extends Construct {
         'EC2InstanceProfileForImageBuilder',
       ),
     );
-    return windowsBuilderRole;
+
+    return new CfnInstanceProfile(
+      this,
+      `${stackName}-windows-builder-instance-profile`,
+      {
+        instanceProfileName: `${stackName}-windows-builder-instance-profile`,
+        roles: [windowsBuilderRole.roleName],
+      },
+    );
   }
 
   public addComponents(components: CfnComponent[]): void {
