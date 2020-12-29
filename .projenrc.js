@@ -1,11 +1,11 @@
 const { AwsCdkConstructLibrary } = require('projen');
 
 const project = new AwsCdkConstructLibrary({
-  authorAddress: "rwk0119@yahoo.com.tw",
-  authorName: "Kirk Chen",
-  cdkVersion: "1.74.0",
-  name: "cdk-image-builder-patterns",
-  repository: "https://github.com/kirkchen/cdk-image-builder-patterns.git",
+  authorAddress: 'rwk0119@yahoo.com.tw',
+  authorName: 'Kirk Chen',
+  cdkVersion: '1.74.0',
+  name: 'cdk-image-builder-patterns',
+  repository: 'https://github.com/kirkchen/cdk-image-builder-patterns.git',
 
   /* AwsCdkConstructLibraryOptions */
   // cdkAssert: true,                                                                     /* Install the @aws-cdk/assert library? */
@@ -83,18 +83,18 @@ const project = new AwsCdkConstructLibrary({
   // workflowBootstrapSteps: "yarn install --frozen-lockfile && yarn projen",             /* Workflow steps to use in order to bootstrap this repo. */
   // workflowContainerImage: undefined,                                                   /* Container image to use for GitHub workflows. */
   // workflowNodeVersion: undefined,                                                      /* The node version to use in GitHub workflows. */
-  defaultReleaseBranch: "main",
+  defaultReleaseBranch: 'main',
   gitignore: ['.idea'],
   cdkDependencies: [
     '@aws-cdk/core',
     '@aws-cdk/aws-ec2',
     '@aws-cdk/aws-iam',
-    '@aws-cdk/aws-imagebuilder'
+    '@aws-cdk/aws-imagebuilder',
   ],
   dotnet: {
-    dotNetNamespace: "Cdk.ImageBuildersPatterns",
-    packageId: "Cdk.ImageBuilderPatterns",
-  }
+    dotNetNamespace: 'Cdk.ImageBuildersPatterns',
+    packageId: 'Cdk.ImageBuilderPatterns',
+  },
 });
 
 const common_exclude = ['cdk.out'];
